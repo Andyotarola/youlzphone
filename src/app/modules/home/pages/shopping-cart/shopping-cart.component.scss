@@ -1,0 +1,157 @@
+.shopping-cart{
+    display: grid;
+    // height: 500px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "header"
+                         "products"
+                         "payment";
+    row-gap: 1em;
+    column-gap:  2em;
+    margin: 1.65em;
+
+    &--empty{
+        height: 74vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &--empty__content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__payment{
+        grid-area: payment;
+        background-color: #fff;
+        border: 2px solid #eff3f5;
+        height: 185px;
+    }
+    
+    &__item{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    &__image{
+        width: 175px;
+        height: 115px;
+        object-fit: contain;
+    }
+
+    &__products{
+        grid-area: products;
+        background-color: #fff;
+        border: 2px solid #eff3f5;
+        padding: 1em;
+    }
+
+    &__header{
+        grid-area: header;   
+    }
+
+    &__title{
+        font-size: 18px;
+    }
+
+    &__link{
+        color: #00aaff;
+        display: block;
+        margin-bottom: .4em;
+    }
+
+    &__link:hover{
+        text-decoration: underline;
+    }
+
+    &__remove{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &__total{
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &--bank-deposit{
+        color: #1192ee;
+        font-weight: 500;
+        border-bottom: 4px solid;
+        padding: 1em;
+    }
+
+    @media screen  and (min-width:1024px){
+        &{
+            margin: 2em 5em;
+            grid-template-columns: .65fr .35fr;
+            grid-template-areas: "header header"  
+                                 "products payment";
+        }
+        &__item{
+            flex-direction: row;
+        }
+
+        &__products{
+            padding: 0;
+        }
+        &__description{
+            padding: .75em 2em;
+        }
+    }
+}
+
+
+
+// .shopping-cart{
+
+//     background-color: #fff;
+//     margin: .5em;
+//     border: 2px solid #eff3f5;
+//     position: relative;
+
+//     &__image{
+//         width: 115px;
+//         height: 115px;
+//         object-fit: contain;
+//     }
+
+
+
+//     &__description{
+//         padding: .75em 2em;
+//     }
+
+//     &__title{
+//         font-size: 18px;
+//     }
+    
+//     &__total{
+//         font-size: 22px;
+//         text-align: center;
+//     }
+
+//     &__price{
+//         font-size: 20px;
+//         font-weight: 500;
+//     }
+    
+//     &__link{
+//         color: #00aaff;
+//         display: block;
+//         margin-bottom: .4em;
+//     }
+
+//     &__link:hover{
+//         text-decoration: underline;
+//     }
+
+//     &__remove{
+//         position: absolute;
+//         right: 0;
+//         top: 0;
+//     }
+// }

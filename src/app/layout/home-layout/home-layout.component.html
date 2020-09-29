@@ -1,0 +1,131 @@
+<mat-drawer-container (click)="onHideSearch($event.target, search, btnSearch)" #container>
+
+  <mat-drawer #drawer style="width: 250px;background-color: #222831;color: #fff;">
+
+    <div class="d-flex flex-column">
+
+      <div class="user-logged" *ngIf="(auth.user$ | async)">
+        <mat-icon>sentiment_very_satisfied</mat-icon>
+        <div>
+          <span>!Hola</span>
+          <p>{{(auth.user$ |async)?.displayName}}!</p>
+        </div>
+      </div>
+
+      <a href="#" mat-button class="navbar__link">
+        Incio
+        <mat-icon>home</mat-icon>
+      </a>
+
+      <a [routerLink]="['/editar-perfil']" mat-button class="navbar__link" *ngIf="(auth.user$ | async);else authTemplate">
+        Mi Cuenta
+        <mat-icon>supervised_user_circle</mat-icon>
+      </a>
+
+      <ng-template #authTemplate>
+        <a [routerLink]="['/account/login']" mat-button class="navbar__link">
+          Ingresar
+          <mat-icon>login</mat-icon>
+        </a>
+        <a [routerLink]="['/account/register']" mat-button class="navbar__link">
+          Crear cuenta
+          <mat-icon>supervised_user_circle</mat-icon>
+        </a>
+      </ng-template>
+
+      <a mat-button class="navbar__link" [routerLink]="['/carrito']">
+        Carrito
+        <mat-icon [matBadge]="countProduct" matBadgeColor="warn">shopping_cart</mat-icon>
+      </a>
+      <button mat-button  (click)="auth.signOut()"  class="navbar__link" *ngIf="(auth.user$ | async)" >  
+        <mat-icon>login</mat-icon>
+        <span>Salir</span>
+      </button>
+
+    </div>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <mat-toolbar color="primary" class="position-fixed" style="z-index: 1000;">
+
+      <div class="container p-0">
+        <div class="row align-items-center">
+          <div class="col-sm-12 col-lg-2 d-flex justify-content-between">
+            <!-- <span>YoulzPhone</span>
+                         -->
+            <a mat-button [routerLink]="['/']">YoulzPhone</a>
+            <div class="d-flex d-lg-none">
+              <button mat-icon-button (click)="onShowSearch(search, true)" #btnSearch class="btn-search">
+                <mat-icon>
+                  search
+                </mat-icon>
+              </button>
+              <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>              
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-lg-6 search" #search>
+            <div class="search__content">
+              <button mat-icon-button class="d-lg-none" (click)="onShowSearch(search, false)">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
+              <input type="text" placeholder="Buscar celular" class="search__input" [matAutocomplete]="auto"
+                [(ngModel)]="searchInput">
+              <button mat-icon-button class="d-lg-none" (click)="onCleanSearch()">
+                <mat-icon>clear</mat-icon>
+              </button>
+
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="OnNavToProd($event)">
+                <mat-option *ngFor="let product of products | async | filterProduct:searchInput" [value]="product">
+                  {{product.title}}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none  d-lg-flex justify-content-end">
+            <a mat-icon-button [routerLink]="['/carrito']" class="mx-4">
+              <mat-icon [matBadge]="countProduct" matBadgeColor="warn">shopping_cart</mat-icon>
+            </a>
+            
+            <button *ngIf="(auth.user$ | async);else notAuth" mat-icon-button [matMenuTriggerFor]="menu">
+              <img [src]="(auth.user$ | async)?.photoURL" alt="" class="avatar">
+            </button>
+            <ng-template #notAuth>
+              <div class="d-none d-lg-flex">
+                <a mat-button [routerLink]="['/account/login']">Ingresar</a>
+                <a mat-button [routerLink]="['/account/register']">Crear cuenta</a>
+              </div>
+            </ng-template>
+            
+          </div>
+
+        </div>
+        
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="/editar-perfil">
+            <mat-icon>account_circle</mat-icon>
+            <span>Mi perfil</span>
+          </a>
+          <button mat-menu-item (click)="auth.signOut()"> 
+            <mat-icon>login</mat-icon>
+            <span>Salir</span>
+          </button>
+        </mat-menu>
+
+      </div>
+    </mat-toolbar>
+
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>

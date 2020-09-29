@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-demo-project": {
+      "hosting": {
+        "youlz-pohne": [
+          "fir-demo-project"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "youlzphone"
+  }
+}

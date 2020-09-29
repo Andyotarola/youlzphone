@@ -1,0 +1,215 @@
+@import '~@angular/material/theming';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/reboot";
+
+
+// $color-base:			#00aaff !default;
+// $color-white:			#FFF !default;
+// $color-gray:			#ccc !default;
+$nav-font-size: 		30px !default;
+
+
+@import "~ngx-owl-carousel-o/lib/styles/scss/theme.default";
+
+
+@include mat-core();
+
+$youlz-pohne-primary: mat-palette($mat-teal);
+$youlz-pohne-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$youlz-pohne-warn: mat-palette($mat-red);
+
+$youlz-pohne-theme: mat-light-theme((
+  color: (
+    primary: $youlz-pohne-primary,
+    accent: $youlz-pohne-accent,
+    warn: $youlz-pohne-warn,
+  )
+));
+
+@include angular-material-theme($youlz-pohne-theme);
+
+/* MINI RESET CSS */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa;}
+a {
+  color: inherit;
+  text-decoration:inherit;
+}
+
+/* Estilos globales */
+
+.link{
+  color: #00aaff;
+  margin-bottom: 0.4em;
+}
+.link:hover{
+  text-decoration: underline;
+}
+
+.avatar{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.copyright{
+  font-size: .95em;
+  text-align: center;
+}
+
+
+/* Home layout*/
+
+.main{
+  padding-top: 56px;
+  min-height: calc(100vh - 80px);
+}
+
+@media screen and (min-width:600px){
+  .main{
+    padding-top: 64px;
+  }
+}
+
+@media screen and (min-width:370px){
+  .main{
+    min-height: calc(100vh - 60px);
+  }
+}
+
+.mat-drawer-container{
+  height: 100%;
+}
+
+.navbar__link{
+  padding: 1.05em !important;
+  text-align: start !important;
+}
+
+/* Estilos para el módulo Home*/
+
+.user-logged{
+  padding: 1.05em 1.05em 0 1.05em;
+  background-color: tomato;
+  display: flex;
+}
+
+.product__image{
+  width: 100% !important;
+  height: 224px;
+  object-fit: contain;
+}
+
+.search{
+
+  transform: translateY(-200%);
+  transition: transform .2s linear;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 .25em;
+  
+  &__content{
+    width: 100%;
+    background-color: #fff;
+    margin: .5em .1em;
+    color: #000;
+    font-size: 14px;
+    display: flex;
+    position: relative;
+  }
+
+  &__input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0 .25em;
+  }
+
+  &__input:focus{
+    border: none;
+    outline: none;
+  }
+
+  &--active{
+    transform: translateY(0);
+  }
+}
+
+.btn-search > *{
+  pointer-events: none;
+}
+
+.search__results{
+  position: absolute;
+  top: calc(100% + 4px);
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+
+.owl-carousel .owl-item img {
+  height: 100%;
+}
+
+.owl-stage-outer .ng-star-inserted{
+  height: 292px;
+}
+
+.owl-theme .owl-nav {
+  position: absolute;
+  top: calc(50% - 26px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+.owl-theme .owl-dots{
+  position: absolute;
+  top: calc(100% - 40px);
+  width: 100%;
+}
+
+/* Estilos para el módulo Auth */
+
+.account{
+  background: #fff;
+  margin: 4em .75em;
+  padding: .2em .4em 1em .4em;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+/*---------------------------- Media Query Global -------------------- */
+
+// Dispositivos Medianos
+@media screen and (min-width: 768px) {
+  .account{
+    margin: 4em 8em;
+  }
+}
+
+// Dispositivos largos
+@media screen and (min-width:992px){
+  .search{
+    transform: translateY(0);
+    position: static;
+  }
+  .owl-stage-outer .ng-star-inserted{
+    height: 500px;
+  }
+  .account{
+    margin: 4em 16em;
+  }
+}
+
+
+
+

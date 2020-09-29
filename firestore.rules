@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    match /products/{id}{
+    	allow read:if true
+    }
+    
+    match /users/{userId}{
+    	allow write,read:if isOwer(userId)
+    }
+    
+    function isOwer(userId){
+    	return request.auth.uid == userId
+    }
+  }
+}
